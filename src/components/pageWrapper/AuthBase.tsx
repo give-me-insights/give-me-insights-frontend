@@ -13,16 +13,16 @@ import MenuIcon from "@mui/material/Menu";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import {RootState} from "../../store";
+import {connect, ConnectedProps} from "react-redux";
 
-
-interface Props {
-  children: JSX.Element
-}
 
 const theme = createTheme();
 
+interface Props extends PropsFromRedux {}
 
-const AuthBase = ({children}: Props) => {
+
+const AuthBase = (props: Props & {children: JSX.Element}) => {
   const performLogout = () => {
     localStorage.removeItem("auth-token")
     Cookies.remove("sessionid")
@@ -44,17 +44,30 @@ const AuthBase = ({children}: Props) => {
             <MenuIcon open={false} />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Gimme-Insights
+            {props.user.company.name} says: Gimme-Insights!
           </Typography>
           <Button color="inherit" onClick={performLogout}>Logout</Button>
         </Toolbar>
       </AppBar>
       <Container component="main">
-        {children}
+        {props.children}
       </Container>
     </ThemeProvider>
   );
 }
 
 
-export default AuthBase;
+const mapState = (state: RootState) => {
+  return {
+    user: state.user
+  }
+}
+
+const mapDispatch = { }
+
+const connector = connect(mapState, mapDispatch)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connect(mapState, mapDispatch)(AuthBase)
+

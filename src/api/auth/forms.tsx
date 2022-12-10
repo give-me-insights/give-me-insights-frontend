@@ -1,3 +1,6 @@
+import { User } from '../../reducers/user/interfaces'
+
+
 export interface AuthFormData {
   email: string,
   password: string
@@ -9,9 +12,5 @@ export interface Token {
 }
 
 
-export interface AuthenticatedUser {
-  id: Number,
-  firstName: string,
-  lastName: string,
-  email: string
-}
+export interface AuthenticatedUser extends User {}
+

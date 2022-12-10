@@ -32,7 +32,12 @@ export const getAuthenticatedUser = async (): Promise<AuthenticatedUser | null> 
         id: r.data.id,
         firstName: r.data.first_name,
         lastName: r.data.last_name,
-        email: r.data.email,
+        email: r.data.email_address,
+        company: {
+          id: r.data.company.id,
+          name: r.data.company.name,
+          key: r.data.company.key
+        }
       }
     })
     .catch(_ => null)
