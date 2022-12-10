@@ -1,11 +1,14 @@
 import {ActionReducer} from "../../utils/genericInterfaces";
 
 export interface InitialUser {
-  id: string | null
+  id: Number | null,
+  firstName: string,
+  lastName: string,
+  email: string,
 }
 
 export interface User extends InitialUser {
-  id: string
+  id: Number
 }
 
 export interface UserAction extends ActionReducer<User> { }

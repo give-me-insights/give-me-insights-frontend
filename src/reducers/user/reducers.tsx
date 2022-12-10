@@ -3,11 +3,15 @@ import * as actionTypes from "./actions"
 
 
 const initialState: InitialUser = {
-  id: null
+  id: null,
+  firstName: "",
+  lastName: "",
+  email: ""
 }
 
 
 const setUser = (state: InitialUser, action: UserAction) => {
+  console.log(action)
   return {
     ...state,
     id: action.entity.id
