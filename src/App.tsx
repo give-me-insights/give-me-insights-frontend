@@ -1,10 +1,10 @@
 import React from 'react';
 
+import ProjectRoutes from "./routes";
+
 function App() {
   return (
-    <div>
-      <h1>Start App</h1>
-    </div>
+    <ProjectRoutes />
   );
 }
 
