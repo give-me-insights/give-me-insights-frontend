@@ -14,7 +14,7 @@ import {setUser} from "../../actions/auth";
 
 
 
-const initialAuthFormData = {
+const initialFormData = {
   email: "",
   password: ""
 }
@@ -24,7 +24,7 @@ interface Props extends PropsFromRedux {}
 
 
 const SignIn = (props: Props) => {
-  const [formData, setFormData] = React.useState<AuthFormData>(initialAuthFormData)
+  const [formData, setFormData] = React.useState<AuthFormData>(initialFormData)
   const [formIsValid, setFormIsValid] = React.useState<boolean>(false)
 
   React.useEffect(() => {
