@@ -26,6 +26,7 @@ const AuthBase = (props: Props & {children: JSX.Element}) => {
   const performLogout = () => {
     localStorage.removeItem("auth-token")
     Cookies.remove("sessionid")
+    Cookies.remove("X-CSRFToken")
     window.location.reload()
   }
 

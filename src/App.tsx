@@ -19,7 +19,6 @@ function App(props: Props) {
 
   useEffect(() => {
     const getUser = async () => {
-      console.log("Get user")
       const user = await getAuthenticatedUser()
       if (user !== null) props.setUser(user)
     }
