@@ -2,12 +2,15 @@ import React from "react";
 
 
 import {AuthFormData} from "../../api/auth/forms";
-import {postSignIn} from "../../api/auth/api";
+import {getAuthenticatedUser, performAuthentication} from "../../api/auth/api";
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Container from "@mui/material/Container";
+import {RootState} from "../../store";
+import {connect, ConnectedProps} from "react-redux";
+import {setUser} from "../../actions/auth";
 
 
 
@@ -17,8 +20,10 @@ const initialAuthFormData = {
 }
 
 
+interface Props extends PropsFromRedux {}
 
-const SignIn: React.FC = () => {
+
+const SignIn = (props: Props) => {
   const [formData, setFormData] = React.useState<AuthFormData>(initialAuthFormData)
   const [formIsValid, setFormIsValid] = React.useState<boolean>(false)
 
@@ -35,11 +40,12 @@ const SignIn: React.FC = () => {
     setFormIsValid(formDataIsValid(newFormData))
   }
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
-    postSignIn(formData)
-      .then(e => console.log(e))
-      .catch(e => console.log(e))
+    const token = await performAuthentication(formData)
+    if (token !== null) localStorage.setItem("auth-token", token.token)
+    const user = await getAuthenticatedUser()
+    if (user !== null) props.setUser(user)
   }
 
   return (
@@ -85,4 +91,19 @@ const SignIn: React.FC = () => {
   )
 }
 
-export default SignIn
+
+const mapState = (state: RootState) => {
+  return {
+    user: state.user
+  }
+}
+
+const mapDispatch = {
+  setUser: setUser
+}
+
+const connector = connect(mapState, mapDispatch)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connect(mapState, mapDispatch)(SignIn)

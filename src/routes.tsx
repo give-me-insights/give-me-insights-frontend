@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Auth from "./pages/auth";
+import Dashboard from "./pages/dashboard/index"
 import PlayGround from "./components/pg";
 
 const ProjectRoutes = () => (
   <Routes>
-    <Route path="/" element={<Auth />} />
+    <Route path="/" element={<Dashboard />} />
   </Routes>
 );
 
