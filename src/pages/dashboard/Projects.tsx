@@ -5,7 +5,6 @@ import {dateTimeBeautifier} from "../../utils/djangoDateTimeBeautifier";
 
 import {getAllProjects} from "../../api/project/api";
 import {Project} from "../../api/project/forms";
-import Placeholder from "./placeholder.svg"
 
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
