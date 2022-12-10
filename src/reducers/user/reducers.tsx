@@ -6,16 +6,17 @@ const initialState: InitialUser = {
   id: null,
   firstName: "",
   lastName: "",
-  email: ""
+  email: "",
+  company: {
+    name: "",
+    key: "",
+    id: null
+  }
 }
 
 
 const setUser = (state: InitialUser, action: UserAction) => {
-  console.log(action)
-  return {
-    ...state,
-    id: action.entity.id
-  }
+  return {...state, ...action.entity}
 }
 
 
