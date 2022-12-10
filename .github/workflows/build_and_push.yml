@@ -1,0 +1,51 @@
+name: Build and Push Workflow
+
+# TODO [medium][ops] - build (without push?) in pipelines only for Feature branches
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Make env-file
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_REACT_APP_BASE_API_URL: "https://gimme-insights.com/api"
+          file_name: .env.production
+
+      - name: Build
+        run: npm run build
+
+      - name: Print Build version
+        run: |
+          for file in ./build/static/js/main.*.js; do
+            echo "${file##*/}"
+          done
+      - name: Push Image to Digital Ocean
+        uses: BetaHuhn/do-spaces-action@v2
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          space_name: give-me-insights
+          space_region: fra1
+          source: ./build
+          out_dir: staticfiles/react/build/
