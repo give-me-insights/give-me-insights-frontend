@@ -14,5 +14,22 @@ export const createProject = async (data: CreateProjectFormData): Promise<Projec
     title: promise.data.title,
     description: promise.data.description,
     key: promise.data.key,
+    timestamp: promise.data.timestamp
   }
+}
+
+
+export const getAllProjects = async (): Promise<Project[]> => {
+  const url = `${BASE_API_URL}/v1/projects/all`
+  const headers = {headers: {...getAuthHeaders()}}
+  const promise = await axios.get(url, headers)
+  return promise.data.map((entity: Project) => {
+    return {
+      id: entity.id,
+      title: entity.title,
+      description: entity.description,
+      key: entity.key,
+      timestamp: entity.timestamp,
+    }
+  })
 }

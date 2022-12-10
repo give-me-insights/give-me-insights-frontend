@@ -1,9 +1,12 @@
 import React from "react";
 
+import Projects from "./Projects";
 
 const Dashboard = () => {
   return (
-    <div><h1>DAHSBOARD</h1></div>
+    <div>
+      <Projects />
+    </div>
   )
 }
 
