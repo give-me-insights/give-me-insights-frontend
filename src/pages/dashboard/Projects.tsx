@@ -52,7 +52,7 @@ const ProjectCard = (props: ProjectCardProps) => {
     <CardMedia
       component="img"
       sx={{ width: 151 }}
-      src={Placeholder}
+      src="/statistic-dashboard-placeholder.svg"
       alt="Live from space album cover"
     />
   </Card>
