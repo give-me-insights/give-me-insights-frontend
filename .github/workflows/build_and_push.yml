@@ -48,4 +48,4 @@ jobs:
           space_name: give-me-insights
           space_region: fra1
           source: ./build
-          out_dir: staticfiles/react/build/
+          out_dir: gmi-backend-static/staticfiles/react/build/
