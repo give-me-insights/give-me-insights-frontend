@@ -4,7 +4,7 @@ import {connect, ConnectedProps} from "react-redux";
 import {dateTimeBeautifier} from "../../utils/djangoDateTimeBeautifier";
 
 import {getAllProjects} from "../../api/project/api";
-import {Project} from "../../api/project/forms";
+import {Project} from "../../reducers/project/interfaces";
 
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
