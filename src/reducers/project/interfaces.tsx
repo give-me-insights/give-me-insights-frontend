@@ -12,6 +12,21 @@ export interface Project extends InitialProject {
   id: Number,
 }
 
+export interface InitialSource {
+  id: null | Number,
+  key: string,
+  projectId: null | Number,
+  title: string,
+  description: string,
+  timestamp: string,
+  inboundTopic: string
+}
+
+export interface Source extends InitialSource{
+  id: Number,
+  projectId: Number
+}
+
 export interface InitialProjectContext {
   project: InitialProject
 }
