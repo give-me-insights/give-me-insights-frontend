@@ -6,6 +6,8 @@ import {connect, ConnectedProps} from "react-redux";
 import { useParams } from 'react-router-dom';
 
 import Sources from "../plugins/sources/view";
+import ProjectLinks from "../plugins/projectLinks/view";
+import Events from "../plugins/events/view";
 import {ProjectPlugin} from "../plugins/ProjectPlugin";
 
 import Grid from '@mui/material/Grid';
@@ -23,7 +25,7 @@ interface DashboardElementProps {
 
 const DashboardElement: React.FC<DashboardElementProps> = (props: DashboardElementProps ) => {
   return <Box
-    style={{height: `${props.height}vh`}}
+    style={{height: `${props.height}vh`, overflow: 'auto'}}
     sx={{boxShadow: 3}}
   >
     {props.children}
@@ -51,7 +53,9 @@ const Dashboard = (props: Props) => {
       </Grid>
       <Grid item xs={4}>
         <DashboardElement title="Plugins" height={80}>
-          <ProjectPlugin><Sources /></ProjectPlugin>
+          <ProjectPlugin height={3}><Sources/></ProjectPlugin>
+          <ProjectPlugin height={3}><ProjectLinks/></ProjectPlugin>
+          <ProjectPlugin height={3}><Events/></ProjectPlugin>
         </DashboardElement>
       </Grid>
     </Grid>
