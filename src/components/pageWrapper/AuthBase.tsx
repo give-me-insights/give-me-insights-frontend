@@ -52,7 +52,7 @@ const AuthBase = (props: Props & {children: JSX.Element}) => {
           <Button color="inherit" onClick={performLogout}>Logout</Button>
         </Toolbar>
       </AppBar>
-      <Container component="main">
+      <Container component="main" maxWidth={false} style={{marginTop: 12}}>
         {props.children}
       </Container>
     </ThemeProvider>

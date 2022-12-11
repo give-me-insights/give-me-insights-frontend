@@ -1,13 +1,21 @@
-export interface CreateProjectFormData {
+interface GenericProjectFormData {
   title: string,
   description: string
 }
 
+export interface CreateProjectFormData extends GenericProjectFormData {}
 
-export interface Project {
-  id: Number,
-  key: string,
-  title: string,
-  description: string,
-  timestamp: string,
+
+export interface CreateSourceFormData extends GenericProjectFormData {}
+
+
+export interface CreateProjectLinkFormData extends GenericProjectFormData {
+  url: string
+}
+
+export interface CreateEventFormData extends GenericProjectFormData {
+  startDate: string,
+  duration: Number,
+  isExpected: boolean,
+  durationUnit: string
 }
